@@ -11,7 +11,7 @@ const s = document.querySelector('span[data-seconds]');
 buttonStart.disabled = true; 
  let intervalId;
 
-const options = {
+const options = { 
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
@@ -24,13 +24,17 @@ const options = {
       } else {
         buttonStart.disabled = false;
       }
-
- buttonStart.addEventListener('click',() => {
-          intervalId = setInterval(() => {
-          const deltaTime = selectedDates[0] - new Date();
-          const time = convertMs(deltaTime);
-          updateClockFace(time);
-            }, 1000);
+      
+      buttonStart.addEventListener('click',() => {
+        intervalId = setInterval(() => {
+      const deltaTime = selectedDates[0] - new Date();
+      
+      if(deltaTime < 1000) {
+        clearInterval(intervalId);
+      }
+        const time = convertMs(deltaTime);
+        updateClockFace(time);
+          }, 1000);
         });
     },
   };   
