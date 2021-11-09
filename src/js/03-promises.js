@@ -9,8 +9,8 @@ function onSubmit(event) {
     elements: { delay, step, amount }
   } = event.currentTarget; 
 
-delay = Number(delay.value);
-step = Number(step.value);
+delay = +delay.value;
+step = +step.value;
 
 for(let position = 1; position <= amount.value; position +=1) {
  delay += step;
